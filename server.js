@@ -44,9 +44,10 @@ mongoose.set('useCreateIndex', true);
 
 // Connect to the Mongo DB
 var config = require('./config/database');
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 mongoose.Promise = Promise;
 mongoose
-  .connect(config.database)
+  .connect(MONGODB_URI)
   .then(function(result) {
     console.log(`Connected to database '${result.connections[0].name}' on ${result.connections[0].host}:${result.connections[0].port}`);
   })
